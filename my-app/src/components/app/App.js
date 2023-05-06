@@ -1,10 +1,10 @@
-import { UsersList } from "../UsersList/UsersList";
+import { Pagination } from "../Pagination/Pagination";
 
 function App() {
     return (
         <>
             <p>Hello</p>
-            <UsersList />
+            <Pagination />
         </>
     );
 }

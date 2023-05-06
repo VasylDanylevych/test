@@ -1,7 +1,9 @@
 import { Avatar, Button, Cirkle, Img, ImgContainer, Line, UserContainer, UserStatList } from "./UserCard.style";
 import image from "../../images/picture.png";
 
-export const UserCard = () => {
+export const UserCard = ({ userProp }) => {
+    const { avatar, user, tweets, followers } = userProp;
+
     return (
         <UserContainer>
             <ImgContainer>
@@ -13,12 +15,13 @@ export const UserCard = () => {
             <Line></Line>
             <Cirkle>
                 <Avatar>
-                    <img src="" alt="" />
+                    <img src={avatar} alt="avatar" />
                 </Avatar>
             </Cirkle>
             <UserStatList>
-                <li>tweets</li>
-                <li>followers</li>
+                <li>{user}</li>
+                <li>{tweets.toLocaleString("en-US")} tweets</li>
+                <li>{followers.toLocaleString("en-US")} followers</li>
             </UserStatList>
             <Button type="button">follow</Button>
         </UserContainer>

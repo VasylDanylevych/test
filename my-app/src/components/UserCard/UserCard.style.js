@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const UserContainer = styled.li`
+export const UserContainer = styled.div`
     position: relative;
     display: block;
     width: 380px;
-    height: 460px;
+    height: 500px;
     background: linear-gradient(114.99deg, #471ca9 -0.99%, #5736a3 54.28%, #4b2a99 78.99%);
     border-radius: 20px;
     box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
@@ -45,10 +45,15 @@ export const Cirkle = styled.div`
 
 export const Avatar = styled.div`
     margin: 8px;
-    width: 64px;
-    height: 64px;
     border-radius: 50%;
     background: #5736a3;
+
+    & img {
+        display: block;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+    }
 `;
 
 export const UserStatList = styled.ul`
@@ -76,7 +81,6 @@ export const Button = styled.button`
 
     width: 196px;
     height: 50px;
-    padding: 14px 56px;
     margin: 26px 92px 0 92px;
 
     font-family: inherit;
