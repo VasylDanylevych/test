@@ -10,3 +10,11 @@ export const fetchUsers = async () => {
         console.error(error);
     }
 };
+
+export const followToUser = async (userId, followersCount) => {
+    try {
+        await axios.put(`${URL}/users/${userId}`, { followers: followersCount });
+    } catch (error) {
+        console.error(error);
+    }
+};

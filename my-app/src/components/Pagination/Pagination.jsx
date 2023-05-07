@@ -4,21 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsersThunk } from "../../redux/thunk";
 import { UsersList } from "../UsersList/UsersList";
 import { Button, Container } from "./Pagination.style";
+import Loader from "../Loader/Loader";
 
 export const Pagination = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
-    const users = useSelector((state) => state.users);
+    const users = useSelector((state) => state.items);
+    const isLoading = useSelector((state) => state.isLoading);
 
     useEffect(() => {
         dispatch(fetchUsersThunk());
     }, [dispatch]);
-
-    const loadMoreData = () => {
-        setCurrentPage(currentPage + 1);
-    };
 
     useEffect(() => {
         const itemsPerPage = 3;
@@ -33,8 +31,13 @@ export const Pagination = () => {
         }
     }, [currentPage, users]);
 
+    const loadMoreData = () => {
+        setCurrentPage(currentPage + 1);
+    };
+
     return (
         <Container>
+            {isLoading && <Loader />}
             <UsersList users={data} />
             {currentPage < totalPage && <Button onClick={loadMoreData}>Load More</Button>}
         </Container>

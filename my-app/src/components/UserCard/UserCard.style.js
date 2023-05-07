@@ -90,13 +90,9 @@ export const Button = styled.button`
     line-height: 1.22;
     text-transform: uppercase;
     color: #373737;
-
-    background: #ebd8ff;
+    background: ${(props) => (props.clicked ? "#5CD3A8" : "#ebd8ff")};
     box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    :active {
-        background: red;
-    }
 `;

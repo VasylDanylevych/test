@@ -1,8 +1,23 @@
 import { Avatar, Button, Cirkle, Img, ImgContainer, Line, UserContainer, UserStatList } from "./UserCard.style";
 import image from "../../images/picture.png";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateFollowersThunk } from "../../redux/thunk";
 
 export const UserCard = ({ userProp }) => {
-    const { avatar, user, tweets, followers } = userProp;
+    const { id, avatar, user, tweets, followers } = userProp;
+    const [isClicked, setIsClicked] = useState(false);
+    const [isFollowing, setIsFollowing] = useState(followers);
+    const dispatch = useDispatch();
+
+    const handleClick = () => {
+        setIsClicked((prevState) => !prevState);
+        setIsFollowing((prevState) => {
+            if (!isClicked) return prevState + 1;
+            else return prevState - 1;
+        });
+        dispatch(updateFollowersThunk({ id, isFollowing }));
+    };
 
     return (
         <UserContainer>
@@ -21,9 +36,11 @@ export const UserCard = ({ userProp }) => {
             <UserStatList>
                 <li>{user}</li>
                 <li>{tweets.toLocaleString("en-US")} tweets</li>
-                <li>{followers.toLocaleString("en-US")} followers</li>
+                <li>{isFollowing.toLocaleString("en-US")} followers</li>
             </UserStatList>
-            <Button type="button">follow</Button>
+            <Button type="button" clicked={isClicked} onClick={handleClick}>
+                {isClicked ? "following" : "follow"}
+            </Button>
         </UserContainer>
     );
 };

@@ -18,7 +18,6 @@ export const Button = styled.button`
 
     font-family: inherit;
     font-style: normal;
-    font-weight: 600;
     font-size: 18px;
     line-height: 1.22;
     text-transform: uppercase;
@@ -30,6 +29,6 @@ export const Button = styled.button`
     border-radius: 10px;
     cursor: pointer;
     :active {
-        background: red;
+        background: #5cd3a8;
     }
 `;
