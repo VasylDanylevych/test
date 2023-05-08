@@ -4,7 +4,7 @@ export const UserContainer = styled.div`
     position: relative;
     display: block;
     width: 380px;
-    height: 500px;
+    height: 460px;
     background: linear-gradient(114.99deg, #471ca9 -0.99%, #5736a3 54.28%, #4b2a99 78.99%);
     border-radius: 20px;
     box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
@@ -14,6 +14,13 @@ export const Img = styled.img`
     width: 308px;
     height: 168px;
     padding: 28px 36px 18px 36px;
+`;
+
+export const Logo = styled.img`
+    position: absolute;
+    z-index: 999;
+    top: 20px;
+    left: 20px;
 `;
 
 export const ImgContainer = styled.div`

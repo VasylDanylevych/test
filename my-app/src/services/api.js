@@ -11,9 +11,9 @@ export const fetchUsers = async () => {
     }
 };
 
-export const followToUser = async (userId, followersCount) => {
+export const followToUser = async (id, followers) => {
     try {
-        await axios.put(`${URL}/users/${userId}`, { followers: followersCount });
+        await axios.put(`${URL}/users/${id}`, { followers });
     } catch (error) {
         console.error(error);
     }

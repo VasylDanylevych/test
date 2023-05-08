@@ -1,31 +1,33 @@
-import { Avatar, Button, Cirkle, Img, ImgContainer, Line, UserContainer, UserStatList } from "./UserCard.style";
+import { Avatar, Button, Cirkle, Img, ImgContainer, Line, Logo, UserContainer, UserStatList } from "./UserCard.style";
 import image from "../../images/picture.png";
+import logo from "../../images/logo.svg";
+
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateFollowersThunk } from "../../redux/thunk";
 
 export const UserCard = ({ userProp }) => {
-    const { id, avatar, user, tweets, followers } = userProp;
+    const { id, avatar, tweets, followers } = userProp;
     const [isClicked, setIsClicked] = useState(false);
     const [isFollowing, setIsFollowing] = useState(followers);
     const dispatch = useDispatch();
 
-    const handleClick = () => {
+    const handleClick = async () => {
         setIsClicked((prevState) => !prevState);
-        setIsFollowing((prevState) => {
-            if (!isClicked) return prevState + 1;
-            else return prevState - 1;
-        });
-        dispatch(updateFollowersThunk({ id, isFollowing }));
-    };
+        const updatedFollowing = isClicked ? isFollowing - 1 : isFollowing + 1;
+        setIsFollowing(updatedFollowing);
 
+        try {
+            await dispatch(updateFollowersThunk({ id, isFollowing: updatedFollowing }));
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
         <UserContainer>
             <ImgContainer>
-                <Img src={image} alt="" />
-                {/* <svg>
-                    <use href="../../images/logo.svg#icon-Logo"></use>
-                </svg> */}
+                <Img src={image} alt="back" />
+                <Logo src={logo} alt="logo" />
             </ImgContainer>
             <Line></Line>
             <Cirkle>
@@ -34,7 +36,6 @@ export const UserCard = ({ userProp }) => {
                 </Avatar>
             </Cirkle>
             <UserStatList>
-                <li>{user}</li>
                 <li>{tweets.toLocaleString("en-US")} tweets</li>
                 <li>{isFollowing.toLocaleString("en-US")} followers</li>
             </UserStatList>
