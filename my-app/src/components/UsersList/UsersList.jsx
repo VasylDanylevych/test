@@ -1,5 +1,6 @@
 import { UserCard } from "../UserCard/UserCard";
 import { List } from "./UsersList.style";
+import PropTypes from "prop-types";
 
 export const UsersList = ({ users }) => {
     return (
@@ -11,4 +12,8 @@ export const UsersList = ({ users }) => {
             ))}
         </List>
     );
+};
+
+UsersList.propTypes = {
+    users: PropTypes.arrayOf(PropTypes.object),
 };

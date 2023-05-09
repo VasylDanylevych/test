@@ -23,14 +23,7 @@ export const Logo = styled.img`
     left: 20px;
 `;
 
-export const ImgContainer = styled.div`
-    /* position: relative; */
-    /* & svg {
-        width: 50px;
-        fill: red;
-        position: absolute;
-    } */
-`;
+export const ImgContainer = styled.div``;
 
 export const Line = styled.div`
     width: 380px;
