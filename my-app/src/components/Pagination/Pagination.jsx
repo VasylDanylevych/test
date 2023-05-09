@@ -18,16 +18,35 @@ export const Pagination = () => {
         dispatch(fetchUsersThunk());
     }, [dispatch]);
 
+    // useEffect(() => {
+    //     const itemsPerPage = 3;
+    //     setTotalPage(Math.ceil(users.length / itemsPerPage));
+    //     if (currentPage > 1) {
+    //         const startIndex = (currentPage - 1) * itemsPerPage;
+    //         const endIndex = startIndex + itemsPerPage;
+    //         const newData = users.slice(startIndex, endIndex);
+    //         setData((prevState) => [...prevState, ...newData]);
+    //     } else {
+    //         setData(users.slice(0, itemsPerPage));
+    //     }
+    // }, [currentPage, users]);
     useEffect(() => {
         const itemsPerPage = 3;
         setTotalPage(Math.ceil(users.length / itemsPerPage));
+
         if (currentPage > 1) {
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
             const newData = users.slice(startIndex, endIndex);
-            setData((prevState) => [...prevState, ...newData]);
+            setData((prevState) => {
+                const filteredData = newData.filter((item) => {
+                    return !prevState.some((prevItem) => prevItem.id === item.id);
+                });
+                return [...prevState, ...filteredData];
+            });
         } else {
-            setData(users.slice(0, itemsPerPage));
+            const initialData = users.slice(0, itemsPerPage);
+            setData(initialData);
         }
     }, [currentPage, users]);
 
